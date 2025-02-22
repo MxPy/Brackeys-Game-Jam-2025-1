@@ -8,6 +8,8 @@ public class SceneLoader : MonoBehaviour
     //We will keep track of all scenes here
    public static void LoadMenu(){
         SceneManager.LoadScene("Menu");
+        ProgressManager manager = GameObject.FindObjectOfType<ProgressManager>();
+        Destroy(manager.gameObject);
    }
    public static void LoadPH1(){
         SceneManager.LoadScene("DemoPH1");

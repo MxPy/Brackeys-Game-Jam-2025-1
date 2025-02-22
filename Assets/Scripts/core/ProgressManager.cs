@@ -108,5 +108,10 @@ public class ProgressManager : MonoBehaviour
                 SceneLoader.LoadPH2();
             }
         }
+        if (phaseActive == 1){
+            if(PH2Decisions[0].pass == true){
+                SceneLoader.LoadMenu();
+            }
+        }
     }
 }
