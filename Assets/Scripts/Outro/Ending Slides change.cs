@@ -6,28 +6,28 @@ using TMPro;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-
+    ProgressManager manager;
     public SpriteRenderer spriteRenderer;
     public Sprite[] spriteArray;
 
     private Sprite nextSprite;
 
-    private bool phaseOne = true; //to definiuje, czy gracz ma dobry klucz
-    private bool phaseTwo = true; //to definiuje, czy gracz ma dobry item do kodu
+    public bool phaseOne = true; //to definiuje, czy gracz ma dobry klucz
+    public bool phaseTwo = true; //to definiuje, czy gracz ma dobry item do kodu
 
-    private bool phaseThree1 = false; //to definiuje, czy gracz ma dobry item do zakonczenia z laserami
-    private bool phaseThree1Exists = false; //to definiuje, czy gracz ma jako przeszkode lasery (reszta musi byc na false)
-
-
-
-    private bool phaseThree2 = false; //to definiuje, czy gracz ma dobry item do zakonczenia z kamerami
-    private bool phaseThree2Exists = false;  //to definiuje, czy gracz ma jako przeszkode kamery (reszta musi byc na false)
+    public bool phaseThree1 = false; //to definiuje, czy gracz ma dobry item do zakonczenia z laserami
+    public bool phaseThree1Exists = false; //to definiuje, czy gracz ma jako przeszkode lasery (reszta musi byc na false)
 
 
 
-    private bool phaseThree3 = true; //to definiuje, czy gracz ma dobry item do zakonczenia z czujnikiem ruchu
-    private bool phaseThree3Exists = true; //to definiuje, czy gracz ma jako przeszkode czujnik ruchu (reszta musi byc na false)
-    private int currentPhase = 1;
+    public bool phaseThree2 = false; //to definiuje, czy gracz ma dobry item do zakonczenia z kamerami
+    public bool phaseThree2Exists = false;  //to definiuje, czy gracz ma jako przeszkode kamery (reszta musi byc na false)
+
+
+
+    public bool phaseThree3 = true; //to definiuje, czy gracz ma dobry item do zakonczenia z czujnikiem ruchu
+    public bool phaseThree3Exists = true; //to definiuje, czy gracz ma jako przeszkode czujnik ruchu (reszta musi byc na false)
+    public int currentPhase = 1;
 
     public AudioSource remoteClick;
     // Start is called before the first frame update
@@ -42,6 +42,21 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         ChangeSprite(spriteArray[0]);
+        manager = GameObject.FindObjectOfType<ProgressManager>();
+        phaseOne = manager.PH2Decisions[1].pass;
+        phaseTwo = manager.PH2Decisions[2].pass;
+        if(manager.whichSec == 1){
+            phaseThree1Exists = true;
+            phaseThree1 = manager.PH2Decisions[0].pass;
+        }
+        if(manager.whichSec == 2){
+            phaseThree2Exists = true;
+            phaseThree2 = manager.PH2Decisions[0].pass;
+        }
+        if(manager.whichSec == 0){
+            phaseThree3Exists = true;
+            phaseThree3 = manager.PH2Decisions[0].pass;
+        }
     }
 
     // Update is called once per frame
@@ -224,7 +239,7 @@ public class NewBehaviourScript : MonoBehaviour
                     }
                 case 13:
                     {
-                        SceneLoader.LoadPH1();
+                        SceneLoader.LoadMenu();
                         break;
                     }
                 case 14:

@@ -12,25 +12,35 @@ public class SceneLoader : MonoBehaviour
         Destroy(manager.gameObject);
    }
    public static void LoadPH1(){
+        SceneManager.sceneLoaded += OnPHSceneLoaded;
         SceneManager.LoadScene("DemoPH1");
+        
    }
      public static void LoadPH2()
      {
-          SceneManager.sceneLoaded += OnPH2SceneLoaded;
+          SceneManager.sceneLoaded += OnPHSceneLoaded;
           SceneManager.LoadScene("DemoPH2");
      }
-
-     private static void OnPH2SceneLoaded(Scene scene, LoadSceneMode mode)
+     public static void LoadPH3()
      {
-          if (scene.name == "DemoPH2")
-          {
-               ProgressManager manager = GameObject.FindObjectOfType<ProgressManager>();
-               if (manager != null)
+          //SceneManager.sceneLoaded += OnPHSceneLoaded;
+          SceneManager.LoadScene("Outro");
+     }
+
+     private static void OnPHSceneLoaded(Scene scene, LoadSceneMode mode)
+     {
+          ProgressManager manager = GameObject.FindObjectOfType<ProgressManager>();
+          if (manager != null)
                {
-                    manager.StartSecondPhase();
+               if (scene.name == "DemoPH2")
+                    {
+                         manager.StartSecondPhase();  
+                    }
+               if (scene.name == "DemoPH1")
+                    {
+                         manager.StartFirstPhase();
+                    }
                }
-               // Odłączamy zdarzenie, żeby nie wywoływało się przy kolejnych zmianach sceny
-               SceneManager.sceneLoaded -= OnPH2SceneLoaded;
-          }
+          SceneManager.sceneLoaded -= OnPHSceneLoaded;
      }
 }

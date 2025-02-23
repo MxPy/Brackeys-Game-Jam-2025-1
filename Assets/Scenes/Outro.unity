@@ -382,7 +382,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101309561}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 03839484ef7e85a4dad129f914b8d607, type: 3}
@@ -1154,6 +1154,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3e3bbd8eab6d29c42b7929c53db1c67e, type: 3}
   - {fileID: 21300000, guid: 5ca4847d479f74c4b88cfca37dc319a3, type: 3}
   - {fileID: 21300000, guid: 5c70d80805ff312449edd696a9f60818, type: 3}
+  phaseOne: 1
+  phaseTwo: 1
+  phaseThree1: 0
+  phaseThree1Exists: 0
+  phaseThree2: 0
+  phaseThree2Exists: 0
+  phaseThree3: 1
+  phaseThree3Exists: 1
+  currentPhase: 1
   remoteClick: {fileID: 94796415}
   newsText: {fileID: 401985421}
 --- !u!212 &1485116382
